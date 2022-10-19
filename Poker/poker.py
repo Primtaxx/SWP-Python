@@ -1,3 +1,4 @@
+from operator import length_hint
 import random
 
 def card():
@@ -25,17 +26,23 @@ def card():
     return card
 
 
-def deck_table():
+#def deck_table(x):    
+ # cards = []
+  #for i in range(0,x):
+   # v = card()
+    #if(v not in cards):
+     # cards.append(card())
+    #else:
+     # x +=1
+  #return cards
+
+def deck_table2(x):
   cards = []
-  x = 5
-  for i in range(0,x):
+  while len(cards) < 5:
     v = card()
     if(v not in cards):
       cards.append(card())
-    else:
-      x +=1
   return cards
 
-
 if __name__ == '__main__':
-    print(deck_table())
+    print(deck_table2(5))
