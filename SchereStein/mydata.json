@@ -1,0 +1,19 @@
+{
+    "playerstats": {
+        "stein": 3,
+        "schere": 8,
+        "papier": 2,
+        "echse": 0,
+        "spock": 1
+    },
+    "compstats": {
+        "stein": 6,
+        "schere": 0,
+        "papier": 0,
+        "echse": 0,
+        "spock": 1
+    },
+    "playerwins": 5,
+    "computerwins": 9,
+    "draw": 9
+}
