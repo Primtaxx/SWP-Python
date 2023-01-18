@@ -12,9 +12,9 @@ class ListElement:
     def getObj(self):
         return self.obj
 
-class SimpleLinkedList:
+class EinfachVerketteteListe:
     def __init__(self):
-        self.startElem = ListElement("Head")
+        self.startElem = ListElement("Kopf")
     
     def getFirstElem(self):
         return self.startElem
@@ -37,7 +37,7 @@ class SimpleLinkedList:
             write = write.getNextElem()
 
 if __name__ == '__main__':
-    list = SimpleLinkedList()
+    list = EinfachVerketteteListe()
     list.addLast("1")
     list.addLast("2")
     list.addLast("3")
