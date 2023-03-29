@@ -13,10 +13,10 @@ class DoublyLinkedList:
         self.head = None
         self.tail = None
 
-    def is_empty(self):
+    def is_empty(self): 
         return self.head is None
 
-    def length(self):
+    def length(self): 
         temp = self.head
         count = 0
         while temp is not None:
@@ -24,7 +24,7 @@ class DoublyLinkedList:
             count += 1
         return count
 
-    def search(self, value):
+    def search(self, value): 
         temp = self.head
         is_found = False
         while temp is not None:
@@ -34,7 +34,7 @@ class DoublyLinkedList:
             temp = temp.next
         return is_found
 
-    def push_front(self, value):
+    def push_front(self, value): 
         new_node = Node(value)
         new_node.next = self.head
         if self.head is not None:
@@ -45,7 +45,7 @@ class DoublyLinkedList:
             self.head = new_node
             self.tail = new_node
 
-    def push_back(self, value):
+    def push_back(self, value): 
         new_node = Node(value)
         new_node.previous = self.tail
         if self.tail is not None:
@@ -56,17 +56,17 @@ class DoublyLinkedList:
             self.head = new_node
             self.tail = new_node
 
-    def peek_front(self):
+    def peek_front(self): 
         if self.head is None:
             return None
         return self.head.data
 
-    def peek_back(self):
+    def peek_back(self): 
         if self.tail is None:
             return None
         return self.tail.data
 
-    def pop_front(self):
+    def pop_front(self): 
         if self.head is None:
             return None
         temp = self.head
@@ -78,7 +78,7 @@ class DoublyLinkedList:
             self.tail = None
         return temp.data
 
-    def pop_back(self):
+    def pop_back(self): 
         if self.tail is None:
             return None
         temp = self.tail
@@ -90,7 +90,7 @@ class DoublyLinkedList:
             self.tail = None
         return temp.data
 
-    def insert_after(self, node, value):
+    def insert_after(self, node, value): 
         if node is None:
             return
         new_node = Node(value)
@@ -102,7 +102,7 @@ class DoublyLinkedList:
         if node == self.tail:
             self.tail = new_node
 
-    def insert_before(self, node, value):
+    def insert_before(self, node, value):    
         if node is None:
             return
         new_node = Node(value)
@@ -114,7 +114,7 @@ class DoublyLinkedList:
         if node == self.head:
             self.head = new_node
 
-    def update_element(self, old_value, new_value):
+    def update_element(self, old_value, new_value): 
         temp = self.head
         is_updated = False
         while temp is not None:
@@ -127,52 +127,47 @@ class DoublyLinkedList:
         else:
             print("Value not Updated in the linked list")
 
-    def update_at_position(self, value, position):
-        temp = self.head
-        count
-        count = 0
-        while temp is not None:
-            if count == position:
-                break
-            count += 1
-            temp = temp.next
-        if temp is None:
-            print("Less than {} elements in the linked list. Cannot update.".format(position))
-        else:
-            temp.data = value
-            print("Value updated at position {}".format(position))
 
 
 
     def delete_from_position(self, position):
-        if self.is_empty():
-            print("Linked List is empty. Cannot delete elements.")
-        elif position == 0:
-            self.delete_from_beginning()
-        else:
-            temp = self.head
-            count = 0
-            while temp is not None:
-                if count == position:
-                    break
-                count += 1
-                temp = temp.next
-            if temp is None:
-                print("There are less than {} elements in linked list. Cannot delete element.".format(position))
-            elif temp.next is None:
-                self.delete_from_last()
-            else:
-                temp.previous.next = temp.next
-                temp.next.previous = temp.previous
+        if self.head is None:
+            return
+        if position < 0:
+            return
+        if position == 0:
+            self.pop_front()
+            return
 
-    def print_linked_list(self):
+        temp = self.head
+        for i in range(position):
+            if temp is None:    
+                return
+            temp = temp.next
+
+        if temp is None:
+            return
+
+        if temp.previous is not None:
+            temp.previous.next = temp.next
+
+        if temp.next is not None:
+            temp.next.previous = temp.previous
+        else:
+            temp.previous.next = None  
+
+        temp.next = None
+        temp.previous = None
+
+
+    def print_linked_list(self): 
         temp = self.head
         while temp is not None:
             print(temp.data, end=", ")
             temp = temp.next
         print()
 
-    def reverse(self):
+    def reverse(self): #n
         temp = None
         current = self.head
         while current is not None:
@@ -183,7 +178,7 @@ class DoublyLinkedList:
         if temp is not None:
             self.head = temp.previous
 
-    def sort(self):
+    def sort(self): 
         if self.head is None:
             return
         current = self.head
@@ -251,6 +246,65 @@ def draw_linked_list(linked_list):
 
     root.mainloop()
 
+class ArrayList:
+    def __init__(self):
+        self.array = []
+
+    def is_empty(self):
+        return len(self.array) == 0
+
+    def length(self):
+        return len(self.array)
+
+    def search(self, value):
+        return value in self.array
+
+    def push_front(self, value):
+        self.array.insert(0, value)
+
+    def push_back(self, value):
+        self.array.append(value)
+
+    def peek_front(self):
+        return self.array[0] if self.array else None
+
+    def peek_back(self):
+        return self.array[-1] if self.array else None
+
+    def pop_front(self):
+        return self.array.pop(0) if self.array else None
+
+    def pop_back(self):
+        return self.array.pop() if self.array else None
+
+    def insert(self, index, value):
+        self.array.insert(index, value)
+
+    def delete(self, index):
+        return self.array.pop(index) if self.array else None
+
+    def update_element(self, old_value, new_value):
+        if old_value in self.array:
+            index = self.array.index(old_value)
+            self.array[index] = new_value
+            return True
+        return False
+
+    def index(self, value):
+        return self.array.index(value)
+
+    def count(self, value):
+        return self.array.count(value)
+
+    def copy(self):
+        copied_list = ArrayList()
+        copied_list.array = self.array.copy()
+        return copied_list
+
+    def print_list(self):
+        print(self.array)
+
+
 def main():
     dll = DoublyLinkedList()
     dll.push_back(1)
@@ -285,7 +339,11 @@ def main():
     dll.sort()
     draw_linked_list(dll)
 
+   
+    dll.delete_from_position(4)
     
+    draw_linked_list(dll)
+
     print("Index of 3:", dll.index(3))
     
     copied_list = dll.copy()
